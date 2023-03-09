@@ -1,24 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import FormQuestions from './components/FormQuestions';
+import { questsContext } from './context/questsContext';
+import perguntas from './data/questions';
 
 function App() {
+  const { finale, answers } = useContext(questsContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main style={{fontFamily: "monospace"}}>
+      {finale ? <h1>Você acertou {answers.filter(Boolean).length} perguntas de {perguntas.length}</h1> : <FormQuestions />}
+    </main>
   );
 }
 
